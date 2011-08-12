@@ -8,9 +8,8 @@ Function list:
 
   * get_wData() - Downloads and parses the XML file containing the weather data. this *must* be called first after creating a weather object.
 
-  * get_temp($type) - Provides the current tempreature
-    *Parameters*: 
-        returns current tempreature in celcius if provided with an "f"
+  * get_temp($type) - Returns the current temperature - default Fahrenheit. It can return in Celsius if supplied with 'c' as a parameter (See example 2)
+
 
  
 
@@ -73,5 +72,5 @@ echo "It's currently " . $temp_celsius ."C or " . $temp_fahren ."F.";
 
 Output:
 {{{
-It's currently 20C or 68F.
+"It's currently 20C or 68F."
 }}}
