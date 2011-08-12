@@ -1,0 +1,71 @@
+#summary One-sentence summary of this page.
+#labels Featured
+
+= Manual=
+
+Function list:
+0) __constructor($location) -Takes one parameter, either a city name or ZIP to retrieve the weather conditions.
+
+1) get_wData() - Downloads and parses the XML file containing the weather data. this *must* be called first after creating a weather object.
+
+2)get_temp($type) - Provides the current tempreature
+    *Parameters*: 
+        returns current tempreature in celcius if provided with an "f"
+
+ 
+
+
+= Example: Get an associative array of the 4-5 day forecast =
+{{{
+ $weather = new weather("Dallas");
+
+// Download the latest weather data and parse. 
+$weather->get_wData();
+
+// Show the entire 4-5 day forecast
+var_dump($weather->get_forecast_assoc());
+?>
+
+}}}
+
+Output:
+{{{
+array
+  'Fri' => 
+    array
+      'high' => string '99' (length=2)
+      'low' => string '79' (length=2)
+      'icon' => string 'http://www.google.com/ig/images/weather/mostly_sunny.gif' (length=56)
+      'condition' => string 'Mostly Sunny' (length=12)
+  'Sat' => 
+    array
+      'high' => string '99' (length=2)
+      'low' => string '79' (length=2)
+      'icon' => string 'http://www.google.com/ig/images/weather/chance_of_storm.gif' (length=59)
+      'condition' => string 'Chance of Storm' (length=15)
+  'Sun' => 
+    array
+      'high' => string '101' (length=3)
+      'low' => string '81' (length=2)
+      'icon' => string 'http://www.google.com/ig/images/weather/sunny.gif' (length=49)
+      'condition' => string 'Clear' (length=5)
+  'Mon' => 
+    array
+      'high' => string '103' (length=3)
+      'low' => string '81' (length=2)
+      'icon' => string 'http://www.google.com/ig/images/weather/mostly_sunny.gif' (length=56)
+      'condition' => string 'Mostly Sunny' (length=12)
+}}}
+
+== Example 2: Get current temperature ==
+{{{
+$weather = new weather("Los Angeles");
+$weather->get_wData();
+// Get temperature in Fahrenheit
+$temp_fahren = $weather->get_temp('f');
+
+// Get temperature in celsius
+$temp_celsius = $weather->get_temp('c');
+
+echo "It's currently " . $temp_celsius ."C or " . $temp_fahren ."F.";
+}}}
