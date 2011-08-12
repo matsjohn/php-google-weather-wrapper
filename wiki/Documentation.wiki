@@ -6,8 +6,6 @@
 Function list:
   * *__constructor($location)* -Takes one parameter, either a city name or ZIP to retrieve the weather conditions.
 
-  * *get_wData()* - Downloads and parses the XML file containing the weather data. This *must* be called first after creating a weather object. Returns *false* if it's unable to parse the XML.
-
   * *get_temp($type)* - Returns the current temperature, default Fahrenheit. It can return in Celsius if supplied with 'c' as a parameter (See example 2)
 
   * *get_condition()* - Returns an associative array of the current weather conditions. (See example 3)
@@ -68,9 +66,9 @@ array
 == Example 2: Get current temperature ==
 {{{
 $weather = new weather("Los Angeles");
-$weather->get_wData();
+
 // Get temperature in Fahrenheit
-$temp_fahren = $weather->get_temp('f');
+$temp_fahren = $weather->get_temp('f'); // Will assume 'f' if no parameter given
 
 // Get temperature in celsius
 $temp_celsius = $weather->get_temp('c');
@@ -90,8 +88,6 @@ Output:
 {{{
 $weather = new weather("Seattle");
 
-$weather->get_wData();
-
 echo $weather->get_condition();
 }}}
 Output:
@@ -103,8 +99,6 @@ Output:
 == Example 4: Get forecast for a day ==
 {{{
 $weather = new weather("Seattle");
-
-$weather->get_wData();
 
 var_dump($weather->get_forecast_for_day("Fri"));
 }}}
