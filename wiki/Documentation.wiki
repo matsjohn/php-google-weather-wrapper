@@ -4,18 +4,18 @@
 = Manual=
 
 Function list:
-0) __constructor($location) -Takes one parameter, either a city name or ZIP to retrieve the weather conditions.
+  *0 __constructor($location) -Takes one parameter, either a city name or ZIP to retrieve the weather conditions.
 
-1) get_wData() - Downloads and parses the XML file containing the weather data. this *must* be called first after creating a weather object.
+  * get_wData() - Downloads and parses the XML file containing the weather data. this *must* be called first after creating a weather object.
 
-2)get_temp($type) - Provides the current tempreature
+  * get_temp($type) - Provides the current tempreature
     *Parameters*: 
         returns current tempreature in celcius if provided with an "f"
 
  
 
 
-= Example: Get an associative array of the 4-5 day forecast =
+== Example: Get an associative array of the 4-5 day forecast ==
 {{{
  $weather = new weather("Dallas");
 
@@ -67,5 +67,11 @@ $temp_fahren = $weather->get_temp('f');
 // Get temperature in celsius
 $temp_celsius = $weather->get_temp('c');
 
+// Output to user
 echo "It's currently " . $temp_celsius ."C or " . $temp_fahren ."F.";
+}}}
+
+Output:
+{{{
+It's currently 20C or 68F.
 }}}
