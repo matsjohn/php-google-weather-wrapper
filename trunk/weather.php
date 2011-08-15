@@ -47,6 +47,7 @@
           
           return (isset($this->_wData['forecast'][$day])) ? $this->_wData['forecast'][$day] :false;
       }
+      
       public function get_forecast_assoc() {
           if (!$this->_isParsed)
               return false;
@@ -57,12 +58,6 @@
           if (!$this->_isParsed)
               return false;
           return $this->_wData['current'];
-      }
-
-      public function dump_wData() {
-          if (!$this->_isParsed)
-              return false;
-          return $this->_wData;
       }
 
       public static function to_celsius($f) {
