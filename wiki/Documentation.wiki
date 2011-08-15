@@ -1,6 +1,5 @@
 #labels Featured
 
-
 = Manual=
 
 Function list:
@@ -114,8 +113,9 @@ var_dump($weather->get_forecast_for_day("Fri"));
 Output:
 {{{
 array
-  'high' => float 77
-  'low' => float 58
-  'icon' => string 'http://www.google.com/ig/images/weather/sunny.gif' (length=49)
-  'condition' => string 'Clear' (length=5)
+  'day' => string 'Fri' (length=3)
+  'high' => int 76
+  'low' => int 58
+  'icon' => string 'http://www.google.com/ig/images/weather/mostly_sunny.gif' (length=56)
+  'condition' => string 'Mostly Sunny' (length=12)
 }}}
