@@ -1,10 +1,14 @@
 <?php
+/**
+ *  Unofficial Google Weather API wrapper
+ *  By Foxhoundz
+ *  GPL version 3
+ */
   class weather {
       private $_location;
       private $_url = 'http://www.google.com/ig/api?weather=';
       private $_isParsed = false;
       private $_wData;
-      
       public $lastError;
 
       public function __construct( $location) {
@@ -38,12 +42,7 @@
       public function get_forecast_for_day($day) {
           if (!$this->_isParsed)
               return false;
-          try {
-            $ret = $this->_wData['forecast'][$day];
-            
-          } catch (Exception $e) {
-              return $e->getMessage();
-          }
+          return $this->_wData['forecast'][$day];
       }
       public function get_forecast_assoc() {
           if (!$this->_isParsed)
@@ -121,6 +120,7 @@
 
               // Insert an array of info for that day
               $this->_wData['forecast'][$day] = array (
+                  "day" => $day,
                   "high" => (int)$forecast->high->attributes()->data,
                   "low" => (int)$forecast->low->attributes()->data,
                   "icon" => (string)"http://www.google.com" . $forecast->icon->attributes()->data,
@@ -129,11 +129,8 @@
           } //foreach ($fNode as $forecast)
           // Let the class know wData is ready for use.
           $this->_isParsed = true;
-      } //private function parse_xml($xData)
-      
+      } //private function parse_xml($xData)   
  }
  $weather = new weather("Seattle");
-
-var_dump($weather->get_forecast_for_day("Fri"));
- 
+var_dump($weather->get_forecast_for_day("Thu"));
 ?>
