@@ -38,7 +38,12 @@
       public function get_forecast_for_day($day) {
           if (!$this->_isParsed)
               return false;
-          return $this->_wData['forecast'][$day];
+          try {
+            $ret = $this->_wData['forecast'][$day];
+            
+          } catch (Exception $e) {
+              return $e->getMessage();
+          }
       }
       public function get_forecast_assoc() {
           if (!$this->_isParsed)
@@ -94,7 +99,7 @@
           // ========= Set up our current conditions array ====================
 
           // Tempreature - temp_f Fahrenheit, temp_c celsius - set as floats.
-          $this->_wData['current']['temp_f'] = (float)$cNode->temp_f->attributes()->data;
+          $this->_wData['current']['temp_f'] = (int)$cNode->temp_f->attributes()->data;
           $this->_wData['current']['temp_c'] = weather::to_celsius($this->_wData['current']['temp_f']);
 
           // Condition
@@ -116,8 +121,8 @@
 
               // Insert an array of info for that day
               $this->_wData['forecast'][$day] = array (
-                  "high" => (float)$forecast->high->attributes()->data,
-                  "low" => (float)$forecast->low->attributes()->data,
+                  "high" => (int)$forecast->high->attributes()->data,
+                  "low" => (int)$forecast->low->attributes()->data,
                   "icon" => (string)"http://www.google.com" . $forecast->icon->attributes()->data,
                   "condition" => (string)$forecast->condition->attributes()->data
 				);
@@ -127,4 +132,8 @@
       } //private function parse_xml($xData)
       
  }
+ $weather = new weather("Seattle");
+
+var_dump($weather->get_forecast_for_day("Fri"));
+ 
 ?>
