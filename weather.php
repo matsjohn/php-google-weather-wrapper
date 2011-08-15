@@ -1,8 +1,10 @@
 <?php
 /**
  *  Unofficial Google Weather API wrapper
- *  By Foxhoundz
- *  GPL version 3
+ *  @author Foxhoundz
+ *  @version 0.4
+ *  @license GPL version 3
+ *  @link http://code.google.com/p/php-google-weather-wrapper/wiki/Documentation
  */
   class weather {
       private $_location;
@@ -90,6 +92,10 @@
              return false;
           }
           // Select the current_conditions node ($cNode)
+          if (!isset($weather->weather[0]->current_conditions)) {
+              $this->lastError = "Unable to find data for the specified location";
+              return false;
+          }
           $cNode = $weather->weather[0]->current_conditions;
 
           // ========= Set up our current conditions array ====================
@@ -128,6 +134,4 @@
           $this->_isParsed = true;
       } //private function parse_xml($xData)   
  }
- $weather = new weather("Dallas");
-var_dump($weather->get_forecast_for_day("Tue"));
 ?>
