@@ -1,5 +1,4 @@
 #labels Featured
-
 = Manual=
 
 Function list:
@@ -9,9 +8,9 @@ Function list:
 
   * *get_condition()* - Returns an associative array of the current weather conditions. (See example 3)
 
-  * *get_forecast_for_day($day)* - Takes one parameter as the day of the week ("Mon","Tue","Wed","Thu","Fri","Sat","Sun"). Returns an associative array with the forecast for that day. ( See example 4)
+  * *get_forecast_for_day($day)* - Takes one parameter as the day of the week ("Mon","Tue","Wed","Thu","Fri","Sat","Sun"). Returns an associative array with the forecast for that day. Returns false if no forecast available for that day. ( See example 4)
 
-  * *get_forecast_assoc()* - Returns an associative array of the four-day forecast (see example 1).
+  * *get_forecast_assoc()* - Returns an associative array of the four-day forecast. (see example 1). 
 
   * *get_cond_assoc()* - Returns an associative array of current conditions, containing the following information:
     * _temp_f_ - Temperature in Fahrenheit
