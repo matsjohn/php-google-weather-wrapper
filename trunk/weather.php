@@ -42,7 +42,8 @@
       public function get_forecast_for_day($day) {
           if (!$this->_isParsed)
               return false;
-          return $this->_wData['forecast'][$day];
+          
+          return (isset($this->_wData['forecast'][$day])) ? $this->_wData['forecast'][$day] :false;
       }
       public function get_forecast_assoc() {
           if (!$this->_isParsed)
@@ -71,15 +72,11 @@
       private function get_xml() {
           // Download raw XML to be parsed.
           $ch = curl_init($this->_url);
-
-          // I don't know why I altered the useragent. It must have been for a good reason. Oh well.
-          curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.1; rv:5.0.1) Gecko/20100101 Firefox/5.0.1');
           curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
           $rawXML = curl_exec($ch);
-
+          curl_close($ch);
           if (!$rawXML)
               return false;
-          curl_close($ch);
           return $rawXML;
       }
 
@@ -131,6 +128,6 @@
           $this->_isParsed = true;
       } //private function parse_xml($xData)   
  }
- $weather = new weather("Seattle");
-var_dump($weather->get_forecast_for_day("Thu"));
+ $weather = new weather("Dallas");
+var_dump($weather->get_forecast_for_day("Tue"));
 ?>
