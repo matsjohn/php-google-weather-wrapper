@@ -1,8 +1,4 @@
 <?php
-/**
- * @author Foxhoundz
- * @version 0.3
- */
   class weather {
       private $_location;
       private $_url = 'http://www.google.com/ig/api?weather=';
@@ -17,11 +13,7 @@
           
           // urlencode doesn't seem to work so manually add the + for whitespace
           $this->_url = preg_replace('/\s{1}/', '+',$this->_url .= $location);
-      }
-      
-      public function get_wData() {
-        $this->parse_xml($this->get_xml());
-        if ($this->_isParsed) return true;
+          $this->parse_xml($this->get_xml());
       }
 
       public function get_temp($type = "f") {
@@ -135,5 +127,4 @@
       } //private function parse_xml($xData)
       
  }
-
 ?>
