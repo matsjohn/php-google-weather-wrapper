@@ -107,8 +107,7 @@
           // Iterate through each day of the week and create an assoc array.
           foreach ($fNode as $forecast) {
               // Get the day.
-              $day = $forecast->day_of_week->attributes()->data;
-
+             $day = (string)$forecast->day_of_week->attributes()->data;
               // Insert an array of info for that day
               $this->_wData['forecast'][$day] = array (
                   "day" => $day,
@@ -121,5 +120,13 @@
           // Let the class know wData is ready for use.
       } //private function parse_xml($xData)   
  }
- 
+ $weather = new weather("Dallas");
+// Get temperature in Fahrenheit
+$temp_fahren = $weather->get_temp('f'); // Will assume 'f' if no parameter given
+
+// Get temperature in celsius
+$temp_celsius = $weather->get_temp('c');
+
+// Output to user
+echo "It's currently " . $temp_celsius ."C or " . $temp_fahren ."F."; 
 ?>
