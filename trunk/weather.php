@@ -119,14 +119,5 @@
           } //foreach ($fNode as $forecast)
           // Let the class know wData is ready for use.
       } //private function parse_xml($xData)   
- }
- $weather = new weather("Dallas");
-// Get temperature in Fahrenheit
-$temp_fahren = $weather->get_temp('f'); // Will assume 'f' if no parameter given
-
-// Get temperature in celsius
-$temp_celsius = $weather->get_temp('c');
-
-// Output to user
-echo "It's currently " . $temp_celsius ."C or " . $temp_fahren ."F."; 
+ } 
 ?>
