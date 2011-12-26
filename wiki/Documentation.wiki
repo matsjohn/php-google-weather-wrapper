@@ -106,7 +106,7 @@ Output:
 {{{
 $weather = new weather("Seattle");
 
-var_dump($weather->get_forecast_for_day("Fri"));
+var_dump($weather->get_forecast_for_day(weather::FRIDAY));
 }}}
 
 Output:
