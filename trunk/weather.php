@@ -9,19 +9,32 @@
  
  
   class weather {
-      private $_location;
-      private $_url = 'http://www.google.com/ig/api?weather=';
-      private $_isParsed = false;
-      private $_wData;
-      public $lastError;
+  
+	private $_location;
+	private $_url = 'http://www.google.com/ig/api?weather=';
+	private $_isParsed = false;
+	private $_wData;
+	public $lastError;
+	  		
+	// define days of the week to aid in get_forecast_for_day()
+	const MONDAY = "Mon";
+	const TUESDAY = "Tue";
+	const WEDNESDAY = "Wed";
+	const THURSDAY = "Thu";
+	const FRIDAY = "Fri";
+	const SATURDAY = "Sat";
+	const SUNDAY = "Sun";
+		
 
       public function __construct( $location) {
-          // Set location
-          $this->_location = $location;
-          
-          // urlencode doesn't seem to work so manually add the + for whitespace
-          $this->_url = preg_replace('/\s{1}/', '+',$this->_url .= $location);
-          $this->parse_xml($this->get_xml());
+
+		
+		// Set location
+		$this->_location = $location;
+		  
+		// urlencode doesn't seem to work so manually add the + for whitespace
+		$this->_url = preg_replace('/\s{1}/', '+',$this->_url .= $location);
+		$this->parse_xml($this->get_xml());
       }
 
       public function get_temp($type = "f") {
@@ -39,10 +52,8 @@
           // provide current conditions only
           return $this->_wData['current']['condition'];
       }
-
+	
       public function get_forecast_for_day($day) {
-
-          
           return (isset($this->_wData['forecast'][$day])) ? $this->_wData['forecast'][$day] :false;
       }
       
@@ -119,5 +130,7 @@
           } //foreach ($fNode as $forecast)
           // Let the class know wData is ready for use.
       } //private function parse_xml($xData)   
- } 
+ }
+
+
 ?>
