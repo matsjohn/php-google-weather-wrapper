@@ -1,0 +1,1 @@
+This PHP class employ's Google's weather API to provide current conditions, 4-5 day forecast, weather icons, and more.
